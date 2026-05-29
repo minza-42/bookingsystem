@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom'
+
 function ServiceCard({ service }) {
+  const navigate = useNavigate()
+
   return (
     <div style={{
       border: '1px solid #ddd',
@@ -11,14 +15,16 @@ function ServiceCard({ service }) {
       <p>{service.description}</p>
       <p>{service.duration_minutes} min</p>
       <p><strong>{service.price} kr</strong></p>
-      <button style={{
-        background: '#4F46E5',
-        color: 'white',
-        border: 'none',
-        padding: '0.5rem 1rem',
-        borderRadius: '6px',
-        cursor: 'pointer'
-      }}>
+      <button
+        onClick={() => navigate('/boka', { state: { service } })}
+        style={{
+          background: '#4F46E5',
+          color: 'white',
+          border: 'none',
+          padding: '0.5rem 1rem',
+          borderRadius: '6px',
+          cursor: 'pointer'
+        }}>
         Boka nu
       </button>
     </div>
