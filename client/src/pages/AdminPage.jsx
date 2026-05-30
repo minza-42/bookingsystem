@@ -10,42 +10,38 @@ function AdminPage() {
   }, [])
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Adminpanel</h1>
-      <p>Antal bokningar: {bookings.length}</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Adminpanel</h1>
+        <p className="text-gray-500 mb-8">{bookings.length} bokningar totalt</p>
 
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr style={{ borderBottom: '2px solid #ddd', textAlign: 'left' }}>
-            <th style={{ padding: '0.75rem' }}>Kund</th>
-            <th style={{ padding: '0.75rem' }}>Tjänst ID</th>
-            <th style={{ padding: '0.75rem' }}>Tid</th>
-            <th style={{ padding: '0.75rem' }}>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map(booking => (
-            <tr key={booking.id} style={{ borderBottom: '1px solid #ddd' }}>
-              <td style={{ padding: '0.75rem' }}>{booking.notes}</td>
-              <td style={{ padding: '0.75rem' }}>{booking.service_id}</td>
-              <td style={{ padding: '0.75rem' }}>
-                {new Date(booking.booking_time).toLocaleString('sv-SE')}
-              </td>
-              <td style={{ padding: '0.75rem' }}>
-                <span style={{
-                  background: booking.status === 'confirmed' ? '#22c55e' : '#f59e0b',
-                  color: 'white',
-                  padding: '0.2rem 0.6rem',
-                  borderRadius: '20px',
-                  fontSize: '0.8rem'
-                }}>
-                  {booking.status}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50 border-b border-gray-100">
+              <tr>
+                <th className="text-left px-6 py-4 text-gray-500 font-medium">Kund</th>
+                <th className="text-left px-6 py-4 text-gray-500 font-medium">Tjänst</th>
+                <th className="text-left px-6 py-4 text-gray-500 font-medium">Tid</th>
+                <th className="text-left px-6 py-4 text-gray-500 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bookings.map(booking => (
+                <tr key={booking.id} className="border-b border-gray-50 hover:bg-gray-50 transition">
+                  <td className="px-6 py-4 text-gray-900">{booking.notes}</td>
+                  <td className="px-6 py-4 text-gray-500">#{booking.service_id}</td>
+                  <td className="px-6 py-4 text-gray-500">{new Date(booking.booking_time).toLocaleString('sv-SE')}</td>
+                  <td className="px-6 py-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${booking.status === 'confirmed' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                      {booking.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }

@@ -4,27 +4,17 @@ function ServiceCard({ service }) {
   const navigate = useNavigate()
 
   return (
-    <div style={{
-      border: '1px solid #ddd',
-      borderRadius: '8px',
-      padding: '1.5rem',
-      width: '250px',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-    }}>
-      <h2>{service.name}</h2>
-      <p>{service.description}</p>
-      <p>{service.duration_minutes} min</p>
-      <p><strong>{service.price} kr</strong></p>
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col gap-3 hover:shadow-md transition">
+      <h2 className="text-xl font-semibold text-gray-900">{service.name}</h2>
+      <p className="text-gray-500 text-sm flex-1">{service.description}</p>
+      <div className="flex justify-between items-center text-sm text-gray-400">
+        <span>{service.duration_minutes} min</span>
+        <span className="text-gray-900 font-bold text-lg">{service.price} kr</span>
+      </div>
       <button
         onClick={() => navigate('/boka', { state: { service } })}
-        style={{
-          background: '#4F46E5',
-          color: 'white',
-          border: 'none',
-          padding: '0.5rem 1rem',
-          borderRadius: '6px',
-          cursor: 'pointer'
-        }}>
+        className="mt-2 bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-xl font-medium transition"
+      >
         Boka nu
       </button>
     </div>
